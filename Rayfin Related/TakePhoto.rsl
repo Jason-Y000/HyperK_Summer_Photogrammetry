@@ -1,0 +1,12 @@
+// Take a single photo if the roll, tilt or heading of the camera has changed
+
+AutoFocus
+AutoExposure
+WaitFor:3000
+ManualFocus
+
+When:Roll != 0|TakePicture
+When:Tilt != 0|TakePicture
+When:Heading != 0|TakePicture
+
+SetIMUZero  // Set current position to be the new starting orientation

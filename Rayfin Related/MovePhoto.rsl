@@ -1,0 +1,28 @@
+// Take photos when the roll, tilt, or heading of the camera is changed
+// Assume that the camera IMU already has been zeroed
+
+// Settings for the image stills
+ImageFormat:JPEG
+JPEGQuality:85
+StillName:Image_Still
+StillsDirectory:\${yyyy}-${MM}-${dd}
+
+// Camera related settings
+// AutoFocus
+// WaitFor:5000
+// ManualFocus
+// AutoExposure
+
+// Check if logging, else start it
+When:IsLogging = false|StartsLogging
+LogDataOnStill:True
+
+// roll = Roll
+// tilt = Tilt
+
+// Take a photo each time the roll, tilt, or heading is changed
+Concurrent
+Repeat:LoadScript:TakePhoto.rsl|ExecuteScript|WaitFor:500|StopScript|-1
+StopConcurrent
+
+// Maybe add a time for it to stop recording the values
